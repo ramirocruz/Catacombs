@@ -6,57 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
+      <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="script.js" defer></script>
     <script src="aframe-room-component.js" ></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <a-scene>
-        <a-entity id="player"
-                  camera
-                  universal-controls
-                  kinematic-body
-                  position="0 1.8 0">
-        </a-entity>
-    
-        <a-entity id="walls"></a-entity>
-    
-        <a-grid id="ground" static-body></a-grid>
-    
-        <a-sky id="sky" color="#AADDF0"></a-sky>
-    
-        <!-- Lighting -->
-        <a-light type="ambient" color="#ccc"></a-light>
+    <a-entity environment="preset:forest"></a-entity>
+      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" color="white" rotation="-90 0 0"></a-plane>
+
+
+
+      
     </a-scene>
-    <script>
-        document.querySelector('a-scene').addEventListener('render-target-loaded', function () {
-            var MAP_SIZE = 10,
-                    PLATFORM_SIZE = 5,
-                    NUM_PLATFORMS = 50;
-            var platformsEl = document.querySelector('#walls');
-            var v, box;
-            for (var i = 0;  i < NUM_PLATFORMS; i++) {
-                // y: 0 is ground
-                v = {
-                    x: (Math.floor(Math.random() * MAP_SIZE) - PLATFORM_SIZE) * PLATFORM_SIZE,
-                    y: PLATFORM_SIZE / 2,
-                    z: (Math.floor(Math.random() * MAP_SIZE) - PLATFORM_SIZE) * PLATFORM_SIZE
-                };
-                box = document.createElement('a-box');
-                platformsEl.appendChild(box);
-                box.setAttribute('color', '#39BB82');
-                box.setAttribute('width', PLATFORM_SIZE);
-                box.setAttribute('height', PLATFORM_SIZE);
-                box.setAttribute('depth', PLATFORM_SIZE);
-                box.setAttribute('position', v.x + ' ' + v.y + ' ' + v.z);
-                box.setAttribute('static-body', '');
-            }
-            console.info('Platforms loaded.');
-        });
-    </script>
+
 </body>
 
 </html>
