@@ -1,29 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
-      <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="script.js" defer></script>
-    <script src="aframe-room-component.js" ></script>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>Hello!</title>
 
-<body>
-    <a-scene>
-    <a-entity environment="preset:forest"></a-entity>
-      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" color="white" rotation="-90 0 0"></a-plane>
+    <link rel="stylesheet" href="/style.css" />
 
-
-
+    <script src="/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.6.0/aframe-master.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.6/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene
+      fog="type: linear; color: #000; far: 16; near: 7 cursor=rayOrigin: mouse"
+    >
+      <a-assets>
+        <img id="entrance" src="https://i.imgur.com/wjobVTN.jpg" />
       
+        <img
+          id="floor"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Ffloor.jpg?v=1604054299172"
+        />
+        <img
+          id="wall"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2F%E2%80%94Pngtree%E2%80%94texture%20noble%20marbling%20free%20pictures_3601852.jpg?v=1604089830695"
+        />
+        <img
+          id="wall-secret"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2F%E2%80%94Pngtree%E2%80%94vector%20wood%20plank%20background_3610187.jpg?v=1604090098926"
+        />
+        <img
+          id="wall-brick"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Fbrick.jpg?v=1604054295389"
+        />
+        <img
+          id="room-sign-1"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Froom-sign-1.png?v=1604054301415"
+        />
+        <img
+          id="room-sign-2"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Froom-sign-2.png?v=1604054304453"
+        />
+        <img
+          id="scrable"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Fmaxresdefault.jpg?v=1604099346386"
+        />
+        <img id="wor"
+             src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Fdownload.jpg?v=1604103242473" />
+        <video
+          id="theaterVideo"
+          autoplay
+          loop="true"
+          webkit-playsinline
+          playsinline
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2FGame%20Over%20_%20Super%20Mario%20World%20_%20Sampled%20Beat%20_%20Trap%20_%20JTBS%20(not%20for%20sale)%20%5Bg_Fu8bpGVws%5D.mp4?v=1604102983779"
+        ></video>
+        <img
+          id="theater-curtains"
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Fcurtains.png?v=1604100024847"
+        />
+        <img 
+             id="jumb"
+             src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2Fimages.png?v=1604103244076"/>
+      </a-assets>
+
+      <a-entity
+        id="player"
+        camera
+        look-controls
+        universal-controls
+        kinematic-body
+        listener
+        position="0 9 0"
+        cursor="rayOrigin:mouse"
+      >
+      </a-entity>
+
+    
+      <a-entity position="-1.5 1.5 19.5" rotation="0 0 0">
+        <a-entity rotation="0 90 0"> </a-entity>
+      </a-entity>
+
+      <a-entity position="10.5 1.5 19.5" rotation="0 -90 0">
+        <a-image
+          position="-1.45 1 6.02"
+          rotation="0 90 0"
+          src="#room-sign-1"
+          height="1.5"
+          width="3"
+        ></a-image>
+        <a-image
+          position="0.0 1 4.32"
+          rotation="0 180 0"
+          src="#scrable"
+          height="1.5"
+          width="3"
+        ></a-image>
+        
+        
+         <a-image
+          position="-4.3 1 -0.0"
+          rotation="0 90 0"
+          src="#jumb"
+          height="1.5"
+          width="2.8"
+        ></a-image>
+        
+        
+         <a-image
+          position="-4.3 1 12.0"
+          rotation="0 90 0"
+          src="#wor"
+          height="1.5"
+          width="2.8"
+        ></a-image>
+        <a-image
+          position="1.45 1 6.02"
+          rotation="0 -90 0"
+          src="#room-sign-2"
+          height="1.5"
+          width="3"
+        ></a-image>
+      </a-entity>
+
+      <a-entity position="-10.5 1.5 7.5" rotation="0 90 0">
+        <a-image
+          position="-1.45 1 6.02"
+          rotation="0 90 0"
+          src="#room-sign-1"
+          height="1.5"
+          width="3"
+        ></a-image>
+        <a-image
+          position="1.45 1 6.02"
+          rotation="0 -90 0"
+          src="#room-sign-2"
+          height="1.5"
+          width="3"
+        ></a-image>
+      </a-entity>
+
+      <a-entity position="7.5 1.5 7.5" rotation="0 -90 0">
+        <a-image
+          position="-1.45 1 6.02"
+          rotation="0 90 0"
+          src="#room-sign-1"
+          height="1.5"
+          width="3"
+        ></a-image>
+        <a-image
+          position="1.45 1 6.02"
+          rotation="0 -90 0"
+          src="#room-sign-2"
+          height="1.5"
+          width="3"
+        ></a-image>
+      </a-entity>
+
+      <a-entity position="-10.5 1.5 -4.5" rotation="0 90 0"> </a-entity>
+
+      <a-entity position="7.5 1.5 -4.5" rotation="0 -90 0">
+        <a-image
+          position="-1.45 1 6.02"
+          rotation="0 90 0"
+          src="#room-sign-1"
+          height="1.5"
+          width="3"
+        ></a-image>
+        <a-image
+          position="1.45 1 6.02"
+          rotation="0 -90 0"
+          src="#room-sign-2"
+          height="1.5"
+          width="3"
+        ></a-image>
+      </a-entity>
+
+      <a-entity position="-1.5 1.5 -22.5">
+        <a-image
+          position="-1.45 1 6.02"
+          rotation="0 90 0"
+          src="#room-sign-1"
+          height="1.5"
+          width="3"
+        ></a-image>
+        <a-image
+          position="1.45 1 6.02"
+          rotation="0 -90 0"
+          src="#room-sign-2"
+          height="1.5"
+          width="3"
+        ></a-image>
+      </a-entity>
+
+      <a-grid
+        id="ground"
+        static-body
+        material="src: #floor; repeat: 15 15"
+        rotation="0 -90 0"
+      ></a-grid>
+
+      <a-video
+        src="#theaterVideo"
+        width="7"
+        height="5.25"
+        position="-22.5 3 -26.8"
+      ></a-video>
+      <a-image
+        position="-22.5 3 -26.8"
+        src="#theater-curtains"
+        height="5.25"
+        width="7"
+      ></a-image>
+
+      <a-entity id="walls"></a-entity>
+
+      <a-sky
+        src="#entrance"
+        rotation="0 -90 0"
+        position="0 0 0"
+        id="src-img-tpl"
+      ></a-sky>
     </a-scene>
-
-</body>
-
+  </body>
+  
 </html>
