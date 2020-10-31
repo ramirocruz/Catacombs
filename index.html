@@ -1,29 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
       <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
     <script src="script.js" defer></script>
     <script src="aframe-room-component.js" ></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
 </head>
 
 <body>
+  
     <a-scene>
-    <a-entity environment="preset:forest"></a-entity>
-      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" color="white" rotation="-90 0 0"></a-plane>
+   <a-assets>
+    <a-asset-item id="cat_model" src="./assets/catwalking/scene.gltf">
+    </a-asset-item>
+    <img id="text1" src="https://www.textures.com/system/categories/38666/frontend-large.jpg">
+    <img id="tex2" src="textures/stones.jpg">
 
+  </a-assets>
+  
+  
+    <a-entity environment="preset:forest;dressing:stones"></a-entity>
+      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" rotation="-90 0 0"></a-plane>
+    
+    <a-entity id="cat" gltf-model="#cat_model" animation-mixer="clip:*;" scale="0.3 0.3 0.3" position="0 0 -2" rotation="0 180 0">
+    <!-- <a-entity camera look-controls position="0 1.6 0"> -->
+    <!-- <a-entity camera="active:true" look-controls="standing:false" position="3.142 5.278 -1.229" rotation="4.583662361046587 -182.77353664673223 0"> -->
+      <a-entity camera="active:true" look-controls="standing:false" position="0 6 -6.5" rotation="0 -180 0" data-aframe-inspector-original-camera="" data-aframe-avatar-replayer-camera="">
+    
+    <!-- </a-entity> -->
+    <!-- </a-entity> -->
+    
+    <!-- </a-entity> -->
+    </a-entity>
+    </a-entity>
+   
+   <a-entity position="2 0 2">
+   <a-box position="0.5 3 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 4 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 2 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+   </a-entity>
 
+   <a-entity position="-2 0 2">
+   <a-box position="0.5 3 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 4 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 2 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+   </a-entity>
+
+   <a-entity position="2 0 -2">
+   <a-box position="0.5 3 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 4 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 2 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+   </a-entity>
+
+   <a-entity position="-2 0 -2">
+   <a-box position="0.5 3 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 4 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+    <a-box position="0.5 2 -5"    src="#tex2">
+        <a-animation attribute="rotation"
+        to="0 -360 0" dur ="7000"
+        repeat="indefinite"
+        easing="linear"> </a-animation>
+   </a-box>
+   </a-entity>
 
       
     </a-scene>
 
+<script src="walk.js"></script>
 </body>
 
 </html>
