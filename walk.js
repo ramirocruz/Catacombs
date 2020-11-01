@@ -13,6 +13,10 @@ let keys = {
   right: false,
 };
 
+
+
+
+
 document.onkeydown = (e) => {
   if (e.keyCode == W_KEY) {
     keys.up = true;
@@ -43,20 +47,25 @@ document.onkeyup = (e) => {
     keys.right = false;
  
   }
+
+  document.getElementById("cam").setAttribute('position',"0 6 -6.5");
+  document.getElementById("cam").setAttribute('rotation',"0 -180 0");
 };
 
+
 const update = () => {
+  let speed = 1.5;
   if (keys.up) {
     let { x, y, z } = cat.getAttribute('position');
     let ry = cat.getAttribute('rotation').y;
-    z -= Math.cos(ry * Math.PI / 180) / 120;
-    x -= Math.sin(ry * Math.PI / 180) / 120;
+    z -= (Math.cos(ry * Math.PI / 180) / 60)*speed;
+    x -= (Math.sin(ry * Math.PI / 180) / 60)*speed;
     cat.setAttribute('position', { x, y, z });
   } else if (keys.down) {
     let { x, y, z } = cat.getAttribute('position');
     let ry = cat.getAttribute('rotation').y;
-    z += Math.cos(ry * Math.PI / 180) / 120;
-    x += Math.sin(ry * Math.PI / 180) / 120;
+    z += (Math.cos(ry * Math.PI / 180) / 60)*speed;
+    x += (Math.sin(ry * Math.PI / 180) / 60)*speed;
     cat.setAttribute('position', { x, y, z });
   }
 
@@ -69,6 +78,8 @@ const update = () => {
     y -= 0.8;
     cat.setAttribute('rotation', { x, y, z });
   }
+
+
 };
 
 setInterval(update, 10);
