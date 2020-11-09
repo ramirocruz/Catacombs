@@ -27,11 +27,46 @@ const map = {
 }
 
 
+doorlist = new Map();
+filled = false;
+var itemval=-1;
+
+function filllist()
+{
+   templist = document.getElementsByClassName("door-break");
+   for(let i=0;i<templist.length;i++)
+   {
+     doorlist[templist[i].body.id] = templist[i];
+   }
+}
+ 
+document.addEventListener('keypress',function (e)
+{
+ 
+  if(e.which == 13)
+  {
+   
+   
+      if(itemval==-1)
+      return;
+      console.log(itemval);
+      doorlist[itemval].removeAttribute("static-body");
+  }
+
+})
+
+
+function update_key()
+{
+  
+  itemval = -1;
+  
+}
+
 
 AFRAME.registerComponent('create-wall', {
   init: function () {
-  //   // This will be called after the entity has properly attached and loaded.
-// var sceneEl = document.querySelector('a-scene');
+   
     console.log('I am ready!');
      var sceneEl = document.querySelector('a-scene');
 
@@ -42,7 +77,7 @@ AFRAME.registerComponent('create-wall', {
 
     for (var x = 0; x < map.height; x++) {
       for (var y = 0; y < map.width; y++) {
-        console.log("hello");
+      
         const i = y * map.width + x;
         const position = `${(x - map.width / 2) * WALL_SIZE} 1.5 ${(y -
           map.height / 2) *
@@ -63,8 +98,13 @@ AFRAME.registerComponent('create-wall', {
             wall.setAttribute("color", "#000");
             wall.setAttribute("static-body", "");
           } else if (map.data[i] === 3) {
+            
+            wall.setAttribute("class","door-break");
+            wall.setAttribute("static-body","");
             wall.setAttribute("color", "#fff");
             wall.setAttribute("material", "src: #wall-secret; repeat: 4 4");
+            
+
           } else if (map.data[i] === 4) {
             wall.setAttribute("color", "#fff");
             wall.setAttribute("material", "src: #wall-brick; repeat: 2 2");
@@ -87,15 +127,18 @@ AFRAME.registerComponent('create-wall', {
         }
       }
     }
-    document.querySelector('#cat').setAttribute('position', playerPos);
-  
-  
-          
-          
-console.log("\n\n\n\n\nCHECK\n\n\n\n\n");
 
+   
+
+   document.querySelector('#cat').setAttribute('position', playerPos);
+  
+  
+        
+
+filled=true;
 
 }});
+
 
 const video = document.getElementById('theaterVideo');
 video.pause();
@@ -111,6 +154,28 @@ AFRAME.registerComponent('listener', {
     }
   }
 });
+
+var playerEl = document.querySelector('#cat');
+playerEl.addEventListener('collide', function (e) {
+
+  if(filled)
+  {
+      filllist();
+      filled=false;
+  }
+  console.log(".......................................");
+  
+  console.log('Player has collided with body #' + e.detail.body.id);
+  if(doorlist[e.detail.body.id] != undefined)
+  {
+  
+    itemval = e.detail.body.id;  
+    console.log("itemval updated to : "+itemval);
+  }
+  
+
+});
+
 
 
 document.getElementById("jumb").setAttribute("static-body","")
@@ -140,3 +205,6 @@ document.getElementById("jumb").addEventListener('click', () => {
            }
   
 });
+
+
+setInterval(update_key,3000);
