@@ -46,10 +46,10 @@ document.addEventListener('keypress',function (e)
   if(e.which == 13)
   {
    
-   
+   console.log(itemval);
       if(itemval==-1)
       return;
-      console.log(itemval);
+      
       doorlist[itemval].removeAttribute("static-body");
   }
 
@@ -131,7 +131,7 @@ AFRAME.registerComponent('create-wall', {
    
 
    document.querySelector('#cat').setAttribute('position', playerPos);
-  
+   
   
         
 
@@ -154,6 +154,7 @@ AFRAME.registerComponent('listener', {
     }
   }
 });
+
 
 var playerEl = document.querySelector('#cat');
 playerEl.addEventListener('collide', function (e) {
@@ -207,4 +208,4 @@ document.getElementById("jumb").addEventListener('click', () => {
 });
 
 
-setInterval(update_key,3000);
+setInterval(update_key,3500);

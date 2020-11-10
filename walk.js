@@ -54,9 +54,11 @@ document.onkeyup = (e) => {
 
 
 const update = () => {
+  // console.log(cat.getAttribute('position'));
   let speed = 1.5;
   if (keys.up) {
     let { x, y, z } = cat.getAttribute('position');
+
     let ry = cat.getAttribute('rotation').y;
     z -= (Math.cos(ry * Math.PI / 180) / 60)*speed;
     x -= (Math.sin(ry * Math.PI / 180) / 60)*speed;
