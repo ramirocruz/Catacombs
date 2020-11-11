@@ -1,29 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html>
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
-      <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="script.js" defer></script>
-    <script src="aframe-room-component.js" ></script>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>Guess the word!</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    
+    <script id="link" type="text/html">
+      <a-entity class="link"
+        geometry="primitive: plane; height: 1; width: 1"
+        material="shader: flat; src: ${thumb}"
+        event-set__mouseenter="scale: 1.2 1.2 1"
+        event-set__mouseleave="scale: 1 1 1"
+        proxy-event="event: click; to: #image-360; as: fade"
+        sound="on: click; src: #click-sound"></a-entity>
+    </script>
+  </head>
+  <body>
+    <a-scene  background="color: white">
+      <a-assets>
+        <img id="a" src="letters/a.jpg">
+        <img id="b" src="letters/b.jpg">
+        <img id="c" src="letters/c.jpg">
+        <img id="d" src="letters/d.jpg">
+        <img id="e" src="letters/e.jpg">
+        <img id="f" src="letters/f.jpg">
+        <img id="g" src="letters/g.jpg">
+        <img id="h" src="letters/h.jpg">
+        <img id="i" src="letters/i.jpg">
+        <img id="j" src="letters/j.jpg">
+        <img id="k" src="letters/k.jpg">
+        <img id="l" src="letters/l.jpg">
+        <img id="m" src="letters/m.jpg">
+        <img id="n" src="letters/n.jpg">
+        <img id="o" src="letters/o.jpg">
+        <img id="p" src="letters/p.jpg">
+        <img id="q" src="letters/q.jpg">
+        <img id="r" src="letters/r.jpg">
+        <img id="s" src="letters/s.jpg">
+        <img id="t" src="letters/t.jpg">
+        <img id="u" src="letters/u.jpg">
+        <img id="v" src="letters/v.jpg">
+        <img id="w" src="letters/w.jpg">
+        <img id="x" src="letters/x.jpg">
+        <img id="y" src="letters/y.jpg">
+        <img id="z" src="letters/z.jpg">
+        <img id="cat" src="image cues/cat.jpg">
+        <img id="dog" src="image cues/dog.jpg">
+        <img id="next" crossorigin="anonymous" src="next.png">
+        <img id="back" crossorigin="anonymous" src="image cues/backspace.jpg">
+        <audio id="click-sound" crossorigin="anonymous" src="click.ogg"></audio>
+      </a-assets>
+      <a-sky id="bg_img" src="#cat" radius="10"
+             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #E8E8E8; dur: 150; startEvents: fade"
+             animation__fadeback="property: components.material.material.color; type: color; from: #E8E8E8; to: #FFF; dur: 150; startEvents: animationcomplete__fade">
+            </a-sky>
+      <!-- <a-sky id="bg_img" src="#dog"></a-sky> -->
+      <a-entity layout="type: line; margin: 1.1" position="-3.5 0 -7">
+        <a-entity id="aclick" template="src: #link"  data-thumb="#a"></a-entity>
+        <a-entity id="bclick" template="src: #link" data-thumb="#b"></a-entity>
+        <a-entity id="cclick" template="src: #link"  data-thumb="#c"></a-entity>
+        <a-entity id="dclick" template="src: #link"  data-thumb="#d"></a-entity>
+        <a-entity id="eclick" template="src: #link"  data-thumb="#e"></a-entity>
+        <a-entity id="fclick" template="src: #link"  data-thumb="#f"></a-entity>
+        <a-entity id="gclick" template="src: #link"  data-thumb="#g"></a-entity>
+    </a-entity>
+    <a-entity layout="type: line; margin: 1.1" position="-4.5 -1 -7">
+        <a-entity id="hclick" template="src: #link"  data-thumb="#h"></a-entity>
+        <a-entity id="iclick" template="src: #link"  data-thumb="#i"></a-entity>
+        <a-entity id="jclick" template="src: #link"  data-thumb="#j"></a-entity>
+        <a-entity id="kclick" template="src: #link"  data-thumb="#k"></a-entity>
+        <a-entity id="lclick" template="src: #link"  data-thumb="#l"></a-entity>
+        <a-entity id="mclick" template="src: #link"  data-thumb="#m"></a-entity>
+        <a-entity id="nclick" template="src: #link"  data-thumb="#n"></a-entity>
+        <a-entity id="oclick" template="src: #link"  data-thumb="#o"></a-entity>
+        <a-entity id="pclick" template="src: #link"  data-thumb="#p"></a-entity>
+    </a-entity>
+    <a-entity layout="type: line; margin: 1.1" position="-5 -2 -7">
+        <a-entity  id="qclick" template="src: #link"  data-thumb="#q"></a-entity>
+        <a-entity id="rclick" template="src: #link"  data-thumb="#r"></a-entity>
+        <a-entity id="sclick" template="src: #link"  data-thumb="#s"></a-entity>
+        <a-entity id="tclick" template="src: #link"  data-thumb="#t"></a-entity>
+        <a-entity id="uclick" template="src: #link"  data-thumb="#u"></a-entity>
+        <a-entity id="vclick" template="src: #link"  data-thumb="#v"></a-entity>
+        <a-entity id="wclick" template="src: #link"  data-thumb="#w"></a-entity>
+        <a-entity id="xclick" template="src: #link"  data-thumb="#x"></a-entity>
+        <a-entity id="yclick" template="src: #link"  data-thumb="#y"></a-entity>
+        <a-entity id="zclick" template="src: #link"  data-thumb="#z"></a-entity>
+    </a-entity>
+    <a-entity id="links" layout="type: line; margin: 1.1" position="0 -3 -7">
+      <a-entity id="next_btn" template="src: #link"  data-thumb="#next"></a-entity>
+  </a-entity>
+  <a-entity id="links" layout="type: line; margin: 1.1" position="4 1 -7">
+      <a-entity id="back_btn" template="src: #link"  data-thumb="#back"></a-entity>
+  </a-entity>
+<a-entity
+  text="value: Guess the Entity in the image!; color: grey"
+  position="5 4 -7"
+  scale="10 10 10"></a-entity>
+  <a-text value="Hello, World!"></a-text>
+      <a-entity camera look-controls>
+        <a-cursor
+          id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 700"
+          event-set__mouseenter="_event: mouseenter; color: springgreen"
+          event-set__mouseleave="_event: mouseleave; color: black"
+          raycaster="objects: .link">
+        </a-cursor>
+      </a-entity>
+      <a-text id="answer" value="" position = "0 3 -7" scale="2 2 2" color="grey"></a-text>
+      <a-text id="ack" value="" position = "0 2 -7" scale="2 2 2" color="grey"></a-text>
 
-<body>
-    <a-scene>
-    <a-entity environment="preset:forest"></a-entity>
-      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" color="white" rotation="-90 0 0"></a-plane>
-
-
-
-      
     </a-scene>
-
-</body>
-
+  <script src="script.js" defer></script>
+  </body>
 </html>
