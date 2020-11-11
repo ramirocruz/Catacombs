@@ -51,6 +51,7 @@ document.addEventListener('keypress',function (e)
       return;
       
       doorlist[itemval].removeAttribute("static-body");
+      doorlist[itemval].setAttribute("visible","false");
   }
 
 })
