@@ -55,7 +55,7 @@ document.onkeyup = (e) => {
 
 const update = () => {
   // console.log(cat.getAttribute('position'));
-  let speed = 1.5;
+  let speed = 4.5;
   if (keys.up) {
     let { x, y, z } = cat.getAttribute('position');
 

@@ -76,8 +76,9 @@
       
         <a-plane static-body height="10000" width="10000" position="0 -0.02 0" rotation="-90 0 0"></a-plane>
     <a-entity id="mainscene" >  
-      <a-entity environment="preset:forest"position="0 0 0"></a-entity>
-      <a-entity listener kinematic-body id="cat" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
+
+      <a-entity environment="preset:forest;ground:flat"position="0 0 0"></a-entity>
+      <a-entity listener kinematic-body="enableJumps: true" id="cat" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
 
         <a-camera 
         id="cam"
