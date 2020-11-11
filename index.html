@@ -1,28 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
-      <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
+   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
     <script src="script.js" defer></script>
-    <script src="aframe-room-component.js" ></script>
-    <link rel="stylesheet" href="style.css">
+   
+    <link rel="stylesheet" href="style.css"> 
 </head>
 
 <body>
-    <a-scene>
-    <a-entity environment="preset:forest"></a-entity>
-      <a-plane static-body height="10000" width="10000" position="0 -0.005 0" color="white" rotation="-90 0 0"></a-plane>
+  
+    <a-scene create-wall >
+   <a-assets>
+    <a-asset-item id="cat_model" src="./assets/catwalking/scene.gltf">
+    </a-asset-item>
+   <img id="entrance" src="https://i.imgur.com/wjobVTN.jpg" />
+        <img id="study" src="https://i.imgur.com/I7PAB.jpg" />
+        <img id="parking" src="https://i.imgur.com/HNluPrg.jpg" />
+        <img
+          id="floor"
+          src="assets/floor.jpg"
+        />
+        <img
+          id="wall"
+          src="assets/lowstonewall.png"
+        />
+        <img
+          id="wall-secret"
+          src="assets/wood-plank.jpg"
+        />
+        <img
+          id="wall-brick"
+          src="assets/brick.jpg"
+        />
+        <img
+          id="room-sign-1"
+          src="assets/room-sign-1.png"
+        />
+        <img
+          id="room-sign-2"
+          src="assets/room-sign-2.png"
+        />
+        <img
+          id="scrable"
+          src="assets/puzzle1.jpg"
+        />
+        <img id="wor"
+             src="assets/puzzle2.png" />
+        <video
+          id="theaterVideo"
+          autoplay
+          loop="true"
+          webkit-playsinline
+          playsinline
+          src="https://cdn.glitch.com/50435242-10d1-486d-8a53-cabc8cf6fafc%2FGame%20Over%20_%20Super%20Mario%20World%20_%20Sampled%20Beat%20_%20Trap%20_%20JTBS%20(not%20for%20sale)%20%5Bg_Fu8bpGVws%5D.mp4?v=1604102983779"
+        ></video>
+        <img
+          id="theater-curtains"
+          src="assets/curtains.png"
+        />
+        <img 
+             id="jumb"
+             src="assets/puzzle3.jpg"/>
+        <img id="tex2" src="textures/stones.jpg">
+
+  </a-assets>
+  
+    
+      
+        <a-plane static-body height="10000" width="10000" position="0 -0.05 0" rotation="-90 0 0"></a-plane>
+    <a-entity id="mainscene" >  
+      <a-entity environment="preset:forest"position="0 0 0"></a-entity>
+      <a-entity listener kinematic-body="enableJumps: true" id="cat" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
+
+        <!-- <a-entity id = "cam" camera="active:true" look-controls="standing:false" position="0 6 -6.5" rotation="0 -180 0" >
+
+        </a-entity> -->
+        <a-camera 
+        id="cam"
+        look-controls="standing:false"
+        position="0 6 -6.5"
+        rotation="0 -180 0"
+        >
+
+        </a-camera>
+      </a-entity>
 
 
+
+    <a-entity id="walls">
+      <a-animation attribute="position" from ="0 7 0"
+          to="0 1 0" dur ="7000"
+          > </a-animation>
+
+
+
+
+    
+
+
+    <a-entity position="-2 0 2">
+    <a-box position="0.5 3 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+      <a-box position="0.5 4 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 -360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+      <a-box position="0.5 2 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 -360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+    </a-entity>
+
+
+
+    <a-entity position="-2 0 -2">
+    <a-box position="0.5 3 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+      <a-box position="0.5 4 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 -360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+      <a-box position="0.5 2 -5"    src="#tex2">
+          <a-animation attribute="rotation"
+          to="0 -360 0" dur ="7000"
+          repeat="indefinite"
+          easing="linear"> </a-animation>
+    </a-box>
+    </a-entity>
+  
+
+        <a-entity position="10.5 1.5 19.5" rotation="0 -90 0">
 
       
-    </a-scene>
+          <a-image
+            position="-1.45 1 6.02"
+            rotation="0 90 0"
+            src="#room-sign-1"
+            height="1.5"
+            width="3"
+          ></a-image>
+          <a-image
+            position="0.0 1 4.32"
+            rotation="0 180 0"
+            src="#scrable"
+            height="1.5"
+            width="3"
+          ></a-image>
+          
+          
+          <a-image
+            position="-4.3 1 -0.0"
+            rotation="0 90 0"
+            src="#jumb"
+            height="1.5"
+            width="2.8"
+          ></a-image>
+          
+          
+          <a-image
+            position="-4.3 1 12.0"
+            rotation="0 90 0"
+            src="#wor"
+            height="1.5"
+            width="2.8"
+          ></a-image>
+          <a-image
+            position="1.45 1 6.02"
+            rotation="0 -90 0"
+            src="#room-sign-2"
+            height="1.5"
+            width="3"
+          ></a-image>
+        </a-entity>
+
+        <a-entity position="-10.5 1.5 7.5" rotation="0 90 0">
+          <a-image
+            position="-1.45 1 6.02"
+            rotation="0 90 0"
+            src="#room-sign-1"
+            height="1.5"
+            width="3"
+          ></a-image>
+          <a-image
+            position="1.45 1 6.02"
+            rotation="0 -90 0"
+            src="#room-sign-2"
+            height="1.5"
+            width="3"
+          ></a-image>
+        </a-entity>
+
+        <a-entity position="7.5 1.5 7.5" rotation="0 -90 0">
+          <a-image
+            position="-1.45 1 6.02"
+            rotation="0 90 0"
+            src="#room-sign-1"
+            height="1.5"
+            width="3"
+          ></a-image>
+          <a-image
+            position="1.45 1 6.02"
+            rotation="0 -90 0"
+            src="#room-sign-2"
+            height="1.5"
+            width="3"
+          ></a-image>
+        </a-entity>
+
+        
+
+        <a-entity position="7.5 1.5 -4.5" rotation="0 -90 0">
+          <a-image
+            position="-1.45 1 6.02"
+            rotation="0 90 0"
+            src="#room-sign-1"
+            height="1.5"
+            width="3"
+          ></a-image>
+          <a-image
+            position="1.45 1 6.02"
+            rotation="0 -90 0"
+            src="#room-sign-2"
+            height="1.5"
+            width="3"
+          ></a-image>
+        </a-entity>
+
+        <a-entity position="-1.5 1.5 -22.5">
+          <a-image
+            position="-1.45 1 6.02"
+            rotation="0 90 0"
+            src="#room-sign-1"
+            height="1.5"
+            width="3"
+          ></a-image>
+          <a-image
+            position="1.45 1 6.02"
+            rotation="0 -90 0"
+            src="#room-sign-2"
+            height="1.5"
+            width="3"
+          ></a-image>
+        </a-entity>
+
+        <a-video
+          src="#theaterVideo"
+          width="7.5"
+          height="4"
+          position="-22.5 1.5 -26.8"
+        ></a-video>
+        <a-image
+          position="-22.5 1.5 -26.8"
+          src="#theater-curtains"
+          height="4"
+          width="7.5"
+        ></a-image>
+
+      </a-entity>
+      </a-entity>
+
+    <a-entity id="scene2" position="0 10 0" visible="false">
+      <a-entity environment position="0 0 0"></a-entity>
+        <a-camera 
+        id="cam2"
+        look-controls
+        position="0 1 0"
+        camera="active:false"
+        >
+        </a-camera>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+    </a-entity>
+
+
+  </a-scene>
+<script src="changescene.js" ></script>
+<script src="walk.js"></script>
 
 </body>
 
