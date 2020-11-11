@@ -48,7 +48,7 @@ document.onkeyup = (e) => {
  
   }
 
-  document.getElementById("cam").setAttribute('position',"0 6 -6.5");
+  
   document.getElementById("cam").setAttribute('rotation',"0 -180 0");
 };
 

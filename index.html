@@ -20,9 +20,9 @@
    <a-assets>
     <a-asset-item id="cat_model" src="./assets/catwalking/scene.gltf">
     </a-asset-item>
-   <img id="entrance" src="https://i.imgur.com/wjobVTN.jpg" />
+   <!-- <img id="entrance" src="https://i.imgur.com/wjobVTN.jpg" />
         <img id="study" src="https://i.imgur.com/I7PAB.jpg" />
-        <img id="parking" src="https://i.imgur.com/HNluPrg.jpg" />
+        <img id="parking" src="https://i.imgur.com/HNluPrg.jpg" /> -->
         <img
           id="floor"
           src="assets/floor.jpg"
@@ -74,18 +74,16 @@
   
     
       
-        <a-plane static-body height="10000" width="10000" position="0 -0.05 0" rotation="-90 0 0"></a-plane>
+        <a-plane static-body height="10000" width="10000" position="0 -0.02 0" rotation="-90 0 0"></a-plane>
     <a-entity id="mainscene" >  
+
       <a-entity environment="preset:forest;ground:flat"position="0 0 0"></a-entity>
       <a-entity listener kinematic-body="enableJumps: true" id="cat" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
 
-        <!-- <a-entity id = "cam" camera="active:true" look-controls="standing:false" position="0 6 -6.5" rotation="0 -180 0" >
-
-        </a-entity> -->
         <a-camera 
         id="cam"
         look-controls="standing:false"
-        position="0 6 -6.5"
+        position="0 4 -7"
         rotation="0 -180 0"
         >
 
