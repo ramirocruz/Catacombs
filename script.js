@@ -1,4 +1,7 @@
-
+function start()
+{
+  splash.style.display = 'none';
+};
 
 const map = {
   "data": [
