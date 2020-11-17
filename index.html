@@ -4,14 +4,33 @@
 <head>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> -->
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> 
    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
   <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
    
     <link rel="stylesheet" href="style.css"> 
+  <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+  <script id="link" type="text/html">
+    <a-entity class="link"
+        geometry="primitive: plane; height: 1; width: 1"
+        material="shader: flat; src: ${thumb}"
+        event-set__mouseenter="scale: 1.4 1.4 1.2"
+        event-set__mouseleave="scale: 1 1 1"
+        proxy-event="event: click; to: #image-360; as: fade"
+        sound="on: click; src: #click-sound">
+    </a-entity>
+  </script>
 </head>
 
 <body>
@@ -33,9 +52,8 @@
    <a-assets>
     <a-asset-item id="cat_model" src="./assets/catwalking/scene.gltf">
     </a-asset-item>
-   <!-- <img id="entrance" src="https://i.imgur.com/wjobVTN.jpg" />
-        <img id="study" src="https://i.imgur.com/I7PAB.jpg" />
-        <img id="parking" src="https://i.imgur.com/HNluPrg.jpg" /> -->
+
+
         <img
           id="floor"
           src="assets/floor.jpg"
@@ -83,6 +101,37 @@
              src="assets/puzzle3.jpg"/>
         <img id="tex2" src="textures/stones.jpg">
 
+        <img id="a" src="assets/letters/a.jpg">
+        <img id="b" src="assets/letters/b.jpg">
+        <img id="c" src="assets/letters/c.jpg">
+        <img id="d" src="assets/letters/d.jpg">
+        <img id="e" src="assets/letters/e.jpg">
+        <img id="f" src="assets/letters/f.jpg">
+        <img id="g" src="assets/letters/g.jpg">
+        <img id="h" src="assets/letters/h.jpg">
+        <img id="i" src="assets/letters/i.jpg">
+        <img id="j" src="assets/letters/j.jpg">
+        <img id="k" src="assets/letters/k.jpg">
+        <img id="l" src="assets/letters/l.jpg">
+        <img id="m" src="assets/letters/m.jpg">
+        <img id="n" src="assets/letters/n.jpg">
+        <img id="o" src="assets/letters/o.jpg">
+        <img id="p" src="assets/letters/p.jpg">
+        <img id="q" src="assets/letters/q.jpg">
+        <img id="r" src="assets/letters/r.jpg">
+        <img id="s" src="assets/letters/s.jpg">
+        <img id="t" src="assets/letters/t.jpg">
+        <img id="u" src="assets/letters/u.jpg">
+        <img id="v" src="assets/letters/v.jpg">
+        <img id="w" src="assets/letters/w.jpg">
+        <img id="x" src="assets/letters/x.jpg">
+        <img id="y" src="assets/letters/y.jpg">
+        <img id="z" src="assets/letters/z.jpg">
+         <img id="cat" src="assets/image_cues/cat.jpg">
+        <img id="dog" src="assets/image_cues/dog.jpg">
+        <img id="next"  src="assets/next.png">
+        <audio id="click-sound" crossorigin="anonymous" src="assets/click.ogg"></audio>
+
   </a-assets>
   
     
@@ -91,7 +140,7 @@
     <a-entity id="mainscene" >  
 
       <a-entity environment="preset:forest;ground:flat"position="0 0 0"></a-entity>
-      <a-entity listener kinematic-body id="cat" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
+      <a-entity listener kinematic-body id="player" gltf-model="#cat_model" animation-mixer="crossFadeDuration:0.9;loop:pingpong;clampWhenFinished:true" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 180 0">
 
         <a-camera 
         id="cam"
@@ -291,25 +340,93 @@
       </a-entity>
       </a-entity>
 
-    <a-entity id="scene2" position="0 10 0" visible="false">
-      <a-entity environment position="0 0 0"></a-entity>
-        <a-camera 
-        id="cam2"
-        look-controls
-        position="0 1 0"
-        camera="active:false"
-        >
-        </a-camera>
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+    <!-- 
+
+      Scene 2 
+      
+     -->
+
+
+    <a-entity id="scene2" position="0 20 0" visible="false">
+
+      <a-entity id="scene2_env"environment="preset:japan;" position="0 -8 0" visible="false">
+
+      </a-entity>
+      <a-sky id="bg_img"  radius="10"
+             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #E8E8E8; dur: 150; startEvents: fade"
+             animation__fadeback="property: components.material.material.color; type: color; from: #E8E8E8; to: #FFF; dur: 150; startEvents: animationcomplete__fade">
+      </a-sky>
+    <a-entity position="0 1 0">
+      <a-entity  layout="type: line; margin: 1.1" position="-3.5 0 -7">
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#a"></a-entity>
+        <a-entity class="alpha"  template="src: #link" data-thumb="#b"></a-entity>
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#c"></a-entity>
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#d"></a-entity>
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#e"></a-entity>
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#f"></a-entity>
+        <a-entity class="alpha"  template="src: #link"  data-thumb="#g"></a-entity>
+    </a-entity>
+    <a-entity  layout="type: line; margin: 1.1" position="-4.5 -1 -7">
+        <a-entity class="alpha" template="src: #link"  data-thumb="#h"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#i"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#j"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#k"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#l"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#m"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#n"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#o"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#p"></a-entity>
+    </a-entity>
+    <a-entity  layout="type: line; margin: 1.1" position="-5 -2 -7">
+        <a-entity class="alpha" template="src: #link"  data-thumb="#q"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#r"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#s"></a-entity>
+        <a-entity class="alpha" id="tclick" template="src: #link"  data-thumb="#t"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#u"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#v"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#w"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#x"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#y"></a-entity>
+        <a-entity class="alpha" template="src: #link"  data-thumb="#z"></a-entity>
+    </a-entity>
+    <a-entity id="links" layout="type: line; margin: 1.1" position="0 -3 -7">
+      <a-entity id="backspace_btn" template="src: #link"  data-thumb="#next"></a-entity>
+  </a-entity>
+<a-entity
+  text="value: Guess the Word!; color: grey"
+  position="5 5 -7"
+  scale="10 10 10">
+</a-entity>
+     <a-text id="answer" value="" material="side:double" position = "-2 3 -7"  width="10"scale="2 2 2" color="grey"></a-text>
+      <a-text id="ack" value="" material="side:double" position = "-2 2 -7" width="10"scale="2 2 2"  color="grey"></a-text>
+      <a-text id="scramb" value="" material="side:double" position = "-2  4 -7" width="10"scale="2 2 2" color="yellow"></a-text>
+</a-entity>
+
+  
+
+      <a-camera id = "cam2" camera="active:false" look-controls >
+        <a-cursor
+          id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 700"
+          event-set__mouseenter="_event: mouseenter; color: springgreen"
+          event-set__mouseleave="_event: mouseleave; color: black"
+          raycaster="objects: .link">
+        </a-cursor>
+      </a-camera>
+      
+ 
+
+
+
+
     </a-entity>
 
 
   </a-scene>
 <script src="changescene.js" ></script>
 <script src="walk.js"></script>
+<script src="puzzle.js"></script>
 
 </body>
 

@@ -31,6 +31,9 @@ const map = {
 
 
 doorlist = new Map();
+doorscene = new Map();
+isdone = new Map();
+answer = new Map();
 filled = false;
 var itemval=-1;
 
@@ -40,7 +43,23 @@ function filllist()
    for(let i=0;i<templist.length;i++)
    {
      doorlist[templist[i].body.id] = templist[i];
+     isdone[templist[i].body.id] = false;
+     doorscene[templist[i].body.id] = {type:`${i%2}`, content:scene_array[i]};
+     if(i%2==0)
+     {
+        answer[templist[i].body.id] = scene_array[i];
+
+     }
+     else
+     {
+       let x = scene_array[i];
+       
+
+
+       answer[templist[i].body.id] = x.slice(x.lastIndexOf('/')+1,x.lastIndexOf('.'));
+     }
    }
+   isdone[-1]=false;
 }
  
 document.addEventListener('keypress',function (e)
@@ -48,14 +67,26 @@ document.addEventListener('keypress',function (e)
  
   if(e.which == 13)
   {
+    if(togglevar)
+    {
    
-   console.log(itemval);
+      console.log(itemval);
       if(itemval==-1)
       return;
-      
-      doorlist[itemval].removeAttribute("static-body");
-      doorlist[itemval].setAttribute("visible","false");
-  }
+      changetoscene(itemval);
+     
+
+   }
+   else
+   {
+
+      revertback();     
+     
+     
+   }
+
+   }
+   
 
 })
 
@@ -134,7 +165,7 @@ AFRAME.registerComponent('create-wall', {
 
    
 
-   document.querySelector('#cat').setAttribute('position', playerPos);
+   document.querySelector('#player').setAttribute('position', playerPos);
    
   
         
@@ -160,7 +191,7 @@ AFRAME.registerComponent('listener', {
 });
 
 
-var playerEl = document.querySelector('#cat');
+var playerEl = document.querySelector('#player');
 playerEl.addEventListener('collide', function (e) {
 
   if(filled)
