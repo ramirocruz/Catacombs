@@ -64,7 +64,7 @@ function filllist()
  
 document.addEventListener('keypress',function (e)
 {
- 
+  
   if(e.which == 13)
   {
     if(togglevar)
@@ -85,6 +85,10 @@ document.addEventListener('keypress',function (e)
      
    }
 
+   }
+   else if(!togglevar) 
+   {
+      keyboardfunc(e);
    }
    
 
@@ -214,33 +218,33 @@ playerEl.addEventListener('collide', function (e) {
 
 
 
-document.getElementById("jumb").setAttribute("static-body","")
+// document.getElementById("jumb").setAttribute("static-body","")
 
-document.getElementById("jumb").addEventListener('click', () => {
+// document.getElementById("jumb").addEventListener('click', () => {
   
 
-      var WORDS     = ["San Francisco", "Austin", "Atlanta", "Boston"];
-        var SCRAMBLED = ["Nas Crnfacois", "Suatni", "Ltnaaat", "Ontosb"];
+//       var WORDS     = ["San Francisco", "Austin", "Atlanta", "Boston"];
+//         var SCRAMBLED = ["Nas Crnfacois", "Suatni", "Ltnaaat", "Ontosb"];
 
        
-           var randomNumber = Math.floor(Math.random() * WORDS.length);
+//            var randomNumber = Math.floor(Math.random() * WORDS.length);
 
 
-           var randomWord = SCRAMBLED[randomNumber];
+//            var randomWord = SCRAMBLED[randomNumber];
 
      
 
-           var userInput = prompt ("Can you unscramble this word?" + "\n \t \t" + randomWord);
+//            var userInput = prompt ("Can you unscramble this word?" + "\n \t \t" + randomWord);
 
-           console.log(userInput);
+//            console.log(userInput);
 
-           if (userInput == WORDS[randomNumber]) {
-            alert("Great job!");
-           } else  {
-            alert("Sorry you were incorrect. The answer is: " + "\n \t \t" + WORDS[randomNumber]);
-           }
+//            if (userInput == WORDS[randomNumber]) {
+//             alert("Great job!");
+//            } else  {
+//             alert("Sorry you were incorrect. The answer is: " + "\n \t \t" + WORDS[randomNumber]);
+//            }
   
-});
+// });
 
 
 setInterval(update_key,3500);

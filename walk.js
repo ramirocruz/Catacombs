@@ -14,21 +14,25 @@ let keys = {
 };
 
 
-
+var animestat = false;
 
 
 document.onkeydown = (e) => {
   if (e.keyCode == W_KEY) {
     keys.up = true;
+    animestat = true;
     
   } else if (e.keyCode == A_KEY) {
     keys.left = true;
+    animestat = true;
     
   } else if (e.keyCode == S_KEY) {
     keys.down = true;
+    animestat = true;
     
   } else if (e.keyCode == D_KEY) {
     keys.right = true;
+    animestat = true;
     
   }
 };
@@ -36,26 +40,40 @@ document.onkeydown = (e) => {
 document.onkeyup = (e) => {
   if (e.keyCode == W_KEY) {
     keys.up = false;
+    animestat = false;
     
   } else if (e.keyCode == A_KEY) {
     keys.left = false;
+    animestat = false;
     
   } else if (e.keyCode == S_KEY) {
     keys.down = false;
+    animestat = false;
     
   } else if (e.keyCode == D_KEY) {
     keys.right = false;
+    animestat = false;
  
   }
 
   
   document.getElementById("cam").setAttribute('rotation',"0 -180 0");
+  document.getElementById("cam").setAttribute('position',"0 5.5 -7");
 };
+
 
 
 const update = () => {
   // console.log(player.getAttribute('position'));
-  let speed = 4.5;
+  let speed = 3.5;
+  // if(animestat)
+  // {
+  //   player.setAttribute('animation-mixer', {timeScale: 1});
+  // }
+  // else
+  // {
+  //   player.setAttribute('animation-mixer', {timeScale: 0});
+  // }
   if (keys.up) {
     let { x, y, z } = player.getAttribute('position');
 

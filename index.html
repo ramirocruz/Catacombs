@@ -30,15 +30,16 @@
         proxy-event="event: click; to: #image-360; as: fade"
         sound="on: click; src: #click-sound">
     </a-entity>
+
   </script>
 </head>
 
 <body>
     
-    <div id="splash" style="background-image: url(assets/catacombs.jpg) ; height:100%;width:100%; background-size: cover;">
+    <div id="splash" style="background-image: url(assets/cat.jpg) ; height:100%;width:100%; background-size: cover;">
     
 
-    <div id="newgame" style="position: relative; right: -1000px; top: 190px;"> 
+    <div id="newgame" style="position: relative; right: -250px; top: 190px;"> 
     <img src="assets/p1.png" width="20%" height="20%" onclick="start();" />
 </div>
 
@@ -47,6 +48,28 @@
    
   
   </div>
+      <!-- <div class="wrap">
+      <h1 class="logo">Word search game</h1>
+      <section id="ws-area"></section>
+      <ul class="ws-words"></ul>
+    </div>
+    <a href="https://github.com/lizhineng/word-search-game"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_red.png" alt="Fork me on GitHub"></a>
+
+    <script src="template.js"></script>
+    <script type="text/javascript">
+      var gameAreaEl = document.getElementById('ws-area');
+      var gameobj = gameAreaEl.wordSearch();
+
+      // Put words into `.ws-words`
+      var words = gameobj.settings.wordsList,
+        wordsWrap = document.querySelector('.ws-words');
+      for (i in words) {
+        var liEl = document.createElement('li');
+        liEl.setAttribute('class', 'ws-word');
+        liEl.innerText = words[i];
+        wordsWrap.appendChild(liEl);
+      }
+    </script> -->
   
     <a-scene create-wall >
    <a-assets>
@@ -70,14 +93,7 @@
           id="wall-brick"
           src="assets/brick.jpg"
         />
-        <img
-          id="room-sign-1"
-          src="assets/room-sign-1.png"
-        />
-        <img
-          id="room-sign-2"
-          src="assets/room-sign-2.png"
-        />
+
         <img
           id="scrable"
           src="assets/puzzle1.jpg"
@@ -130,11 +146,13 @@
          <img id="cat" src="assets/image_cues/cat.jpg">
         <img id="dog" src="assets/image_cues/dog.jpg">
         <img id="next"  src="assets/next.png">
+        <img id="hint"  src="assets/hint.jpeg">
         <audio id="click-sound" crossorigin="anonymous" src="assets/click.ogg"></audio>
 
   </a-assets>
   
-    
+    <a-link href="https://commoninsubstantialtrial.mohitmanwani02.repl.co/" title="My Homepage" position="-4.3 1 12.0"
+            rotation="0 90 0" image="#cat"></a-link>
       
         <a-plane static-body height="10000" width="10000" position="0 -0.02 0" rotation="-90 0 0"></a-plane>
     <a-entity id="mainscene" >  
@@ -146,7 +164,7 @@
         id="cam"
         look-controls="standing:false"
         position="0 4 -7"
-        rotation="0 -180 0"
+        rotation="0 180 0"
         >
 
         </a-camera>
@@ -213,13 +231,13 @@
         <a-entity position="10.5 1.5 19.5" rotation="0 -90 0">
 
       
-          <a-image
+          <!-- <a-image
             position="-1.45 1 6.02"
             rotation="0 90 0"
             src="#room-sign-1"
             height="1.5"
             width="3"
-          ></a-image>
+          ></a-image> -->
           <a-image
             position="0.0 1 4.32"
             rotation="0 180 0"
@@ -245,16 +263,16 @@
             height="1.5"
             width="2.8"
           ></a-image>
-          <a-image
+          <!-- <a-image
             position="1.45 1 6.02"
             rotation="0 -90 0"
             src="#room-sign-2"
             height="1.5"
             width="3"
-          ></a-image>
+          ></a-image> -->
         </a-entity>
 
-        <a-entity position="-10.5 1.5 7.5" rotation="0 90 0">
+        <!-- <a-entity position="-10.5 1.5 7.5" rotation="0 90 0">
           <a-image
             position="-1.45 1 6.02"
             rotation="0 90 0"
@@ -269,9 +287,9 @@
             height="1.5"
             width="3"
           ></a-image>
-        </a-entity>
+        </a-entity> -->
 
-        <a-entity position="7.5 1.5 7.5" rotation="0 -90 0">
+        <!-- <a-entity position="7.5 1.5 7.5" rotation="0 -90 0">
           <a-image
             position="-1.45 1 6.02"
             rotation="0 90 0"
@@ -286,11 +304,11 @@
             height="1.5"
             width="3"
           ></a-image>
-        </a-entity>
+        </a-entity> -->
 
         
 
-        <a-entity position="7.5 1.5 -4.5" rotation="0 -90 0">
+        <!-- <a-entity position="7.5 1.5 -4.5" rotation="0 -90 0">
           <a-image
             position="-1.45 1 6.02"
             rotation="0 90 0"
@@ -305,9 +323,9 @@
             height="1.5"
             width="3"
           ></a-image>
-        </a-entity>
+        </a-entity> -->
 
-        <a-entity position="-1.5 1.5 -22.5">
+        <!-- <a-entity position="-1.5 1.5 -22.5">
           <a-image
             position="-1.45 1 6.02"
             rotation="0 90 0"
@@ -322,7 +340,7 @@
             height="1.5"
             width="3"
           ></a-image>
-        </a-entity>
+        </a-entity> -->
 
         <a-video
           src="#theaterVideo"
@@ -391,20 +409,27 @@
     </a-entity>
     <a-entity id="links" layout="type: line; margin: 1.1" position="0 -3 -7">
       <a-entity id="backspace_btn" template="src: #link"  data-thumb="#next"></a-entity>
+      <a-entity id="hint_btn" template="src : #link" data-thumb="#hint"></a-entity>
   </a-entity>
 <a-entity
   text="value: Guess the Word!; color: grey"
   position="5 5 -7"
   scale="10 10 10">
 </a-entity>
+<!-- <a-entity
+  text="value: ; color: grey"
+  position="5 5 -7"
+  scale="10 10 10">
+</a-entity> -->
      <a-text id="answer" value="" material="side:double" position = "-2 3 -7"  width="10"scale="2 2 2" color="grey"></a-text>
+     <a-text id="hint_text" value="" position = "0 2 -7" scale="2 2 2" color="grey"></a-text>
       <a-text id="ack" value="" material="side:double" position = "-2 2 -7" width="10"scale="2 2 2"  color="grey"></a-text>
       <a-text id="scramb" value="" material="side:double" position = "-2  4 -7" width="10"scale="2 2 2" color="yellow"></a-text>
 </a-entity>
 
   
 
-      <a-camera id = "cam2" camera="active:false" look-controls >
+      <a-camera id = "cam2" camera="active:false" wasd-controls-enabled="false" look-controls >
         <a-cursor
           id="cursor"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
