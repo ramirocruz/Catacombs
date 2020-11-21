@@ -174,7 +174,7 @@ filled=true;
 
 }});
 
-
+var baud=document.getElementById("b_aud");
 const video = document.getElementById('theaterVideo');
 video.pause();
 AFRAME.registerComponent('listener', {
@@ -184,8 +184,11 @@ AFRAME.registerComponent('listener', {
 
     if (userPositionz <= -16 && userPositionx <= -17 ) {
       video.play();
+      baud.pause();
     } else {
       video.pause();
+      baud.volume=0.4;
+      baud.play();
     }
   }
 });
